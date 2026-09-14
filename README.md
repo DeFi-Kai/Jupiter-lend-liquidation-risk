@@ -6,6 +6,10 @@ This project examines Jupiter Lend's onchain lending activity, beginning with hi
 
 The project is being extended into risk analysis and stress testing.
 
+- `data/`: October 10, 2025 liquidation and flashloan dataset exports and schemas.
+- `sql/`: Reusable DuneSQL queries for producing the datasets.
+- `docs/`: Liquidation methodology and validation notes.
+
 ## Roadmap
 
 - [x] Historical liquidation dataset
@@ -49,9 +53,3 @@ Analysis of the October 10, 2025 liquidation cascade found:
 The historical Solana price data available through Dune's [`prices.hour`](https://dune.com/data/prices.hour) table has hourly resolution, which cannot capture minute-by-minute price movements around individual liquidation events. USD-denominated values for collateral seized and debt repaid should therefore be treated as estimates rather than exact transaction-time valuations.
 
 More precise price data would allow better estimation of the value captured during individual liquidations. The dataset does not attempt to label the difference between collateral value and debt repaid as realized liquidator profit.
-
-## Repository Layout
-
-- `data/`: October 10, 2025 liquidation and flashloan dataset exports and schemas.
-- `sql/`: Reusable DuneSQL queries for producing the datasets.
-- `docs/`: Liquidation methodology and validation notes.
