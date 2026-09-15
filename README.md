@@ -16,9 +16,13 @@ Next steps: Implementing Position-level risk modeling, distance-to-liquidation, 
 - [ ] Stress testing
 - [ ] Liquidation-at-risk analysis
 
-## Historical Liquidation Dashboard
+## Major Findings So Far
 
-This dashboard summarizes the historical October 10, 2025 liquidation analysis.
+Analysis of the October 10, 2025 liquidation cascade found:
+- ~$1.29M in liquidations were processed through Jupiter Lend.
+- Fewer than 50% of flashloan-assisted liquidations used liquidity from Kamino.
+- Nine wallet accounts took part in liquidations.
+- The three largest liquidated collateral assets were SOL (~$567k), cbBTC (~$372k), and JUPSOL (~$264k).
 
 ![Jupiter Lend liquidation dashboard](docs/jupiter-lend-liquidation-dashboard.png)
 
@@ -35,16 +39,7 @@ Jupiter Lend liquidation events are reconstructed from raw Solana instructions o
 
 This produces a transaction-level dataset that can be used to analyze liquidation activity by account, asset, liquidator, and transaction.
 
-## Major Findings So Far
-
-Analysis of the October 10, 2025 liquidation cascade found:
-
-- ~$1.29M in liquidations were processed through Jupiter Lend.
-- Fewer than 50% of flashloan-assisted liquidations used liquidity from Kamino.
-- Nine wallet accounts took part in liquidations.
-- The three largest liquidated collateral assets were SOL (~$567k), cbBTC (~$372k), and JUPSOL (~$264k).
-
-## Data Sources
+### Data Sources
 
 - Dune
   - [`solana.instruction_calls`](https://dune.com/data/solana.instruction_calls)
