@@ -6,19 +6,11 @@ This project examines Jupiter Lend's onchain lending activity, beginning with hi
 
 Position-level risk modeling, distance-to-liquidation, stress testing, and liquidation-at-risk analysis are not yet implemented.
 
-Repo structure:
-- `data/`: October 10, 2025 liquidation and flashloan dataset exports and schemas.
-- `sql/`: Reusable DuneSQL queries for producing the datasets.
-- `docs/`: Liquidation methodology and validation notes.
+## Roadmap
 
-## Scope and Status
-
-**Completed**
 - [x] Historical liquidation dataset
 - [x] Historical flashloan dataset
 - [x] October 10, 2025 liquidation analysis
-
-**Planned**
 - [ ] Position-level risk modeling
 - [ ] Distance-to-Liquidation (DTL)
 - [ ] Stress testing
