@@ -10,6 +10,10 @@ The project is being extended into risk analysis and stress testing.
 - `sql/`: Reusable DuneSQL queries for producing the datasets.
 - `docs/`: Liquidation methodology and validation notes.
 
+## Dashboard
+
+![Jupiter Lend liquidation dashboard](docs/jupiter-lend-liquidation-dashboard.png)
+
 ## Roadmap
 
 - [x] Historical liquidation dataset
