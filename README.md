@@ -1,64 +1,52 @@
-# Jupiter Lend Liquidation Risk
+# Jupiter Lend Liquidations on Solana
 
-Jupiter Lend is a lending venue on Solana and part of Jupiter's broader product suite. The protocol uses Fluid's lending architecture, adapted for Solana.
+Jupiter Lend is a Solana lending market built on Fluid's lending architecture. I built this project to understand what happened during the October 10, 2025 liquidation event: which positions were liquidated, what collateral was seized, how much debt was repaid, who executed the liquidations, and how flashloans were used.
 
-This project examines Jupiter Lend's onchain lending activity, beginning with historical liquidations. The liquidation dataset is built using DuneSQL and reconstructs events from raw data to identify liquidated positions, collateral seized, debt repaid, liquidators, and the use of flashloans.
+The work starts from raw Solana instructions in Dune rather than a protocol-level liquidation table. The result is a transaction-level dataset that can be explored by asset, position, liquidator, and transaction.
 
-**Current scope:** This repository contains the completed historical liquidation decoding and analysis. Position-level risk modeling, distance-to-liquidation, stress testing, and liquidation-at-risk analysis are planned extensions and are not yet implemented.
+## Dashboard
 
-- `data/`: October 10, 2025 liquidation and flashloan dataset exports and schemas.
-- `sql/`: Reusable DuneSQL queries for producing the datasets.
-- `docs/`: Liquidation methodology and validation notes.
-
-## Historical Liquidation Dashboard
-
-This dashboard summarizes the historical October 10, 2025 liquidation analysis. It is not a position-level risk model.
+The analysis is available in the [Jupiter Lend Liquidations and Flash Loans dashboard on Dune](https://dune.com/defi_kai/jupiter-lend-liquidations-and-flash-loans-10102025).
 
 ![Jupiter Lend liquidation dashboard](docs/jupiter-lend-liquidation-dashboard.png)
 
-## Scope and Status
+## What I found
 
-**Completed**
-- [x] Historical liquidation dataset
-- [x] Historical flashloan dataset
-- [x] October 10, 2025 liquidation analysis
+The October 10 liquidation cascade produced:
 
-**Planned**
-- [ ] Position-level risk modeling
-- [ ] Distance-to-Liquidation (DTL)
-- [ ] Stress testing
-- [ ] Liquidation-at-risk analysis
+- 484 reconstructed liquidation records
+- 456 associated flashloan records
+- Approximately $1.29M in liquidations processed through Jupiter Lend
+- Nine wallets taking part in liquidations
+- SOL, cbBTC, and JUPSOL as the largest liquidated collateral assets, at approximately $567k, $372k, and $264k respectively
+- Kamino providing liquidity for fewer than half of the flashloan-assisted liquidations
 
-## Data Sources
+## How the dataset is built
 
-- Dune
-  - [`solana.instruction_calls`](https://dune.com/data/solana.instruction_calls)
-  - [`prices.hour`](https://dune.com/data/prices.hour)
+The SQL queries:
 
-## High-Level Methodology
-
-Jupiter Lend liquidation events are reconstructed from raw Solana instructions on Dune:
-
-1. Identify Jupiter Lend liquidation transactions using the protocol's liquidation instruction discriminator.
-2. Extract the relevant accounts from each liquidation instruction, including the position, collateral mint, and debt mint.
-3. Associate each liquidation with its liquidator and identify transactions that use flashloans.
-4. Decode inner liquidity instructions to determine the amount of debt repaid and collateral withdrawn.
+1. Identify Jupiter Lend `liquidate` instructions using the protocol's instruction discriminator.
+2. Extract the position, collateral mint, debt mint, and liquidator from the instruction accounts.
+3. Trace inner liquidity instructions to reconstruct debt repaid and collateral withdrawn.
+4. Identify flashloans and classify the lender.
 5. Normalize raw token amounts using token decimals.
-6. Join historical price data to estimate the USD value of collateral seized and debt repaid.
+6. Join the events to Dune's hourly price data to estimate USD values.
 
-This produces a transaction-level dataset that can be used to analyze liquidation activity by account, asset, liquidator, and transaction.
+The detailed decoding logic is documented in [`docs/liquidation-methodology.md`](docs/liquidation-methodology.md), with validation notes in [`docs/validation.md`](docs/validation.md).
 
-## Major Findings So Far
+## Repository structure
 
-Analysis of the October 10, 2025 liquidation cascade found:
+- `data/` contains the October 10, 2025 liquidation and flashloan exports, along with their schemas.
+- `sql/` contains the DuneSQL queries used to produce the datasets.
+- `docs/` contains the methodology, validation notes, and dashboard image.
 
-- Approximately $1.29M in liquidations were processed through Jupiter Lend.
-- Fewer than 50% of flashloan-assisted liquidations used liquidity from Kamino.
-- Nine wallet accounts took part in liquidations.
-- The three largest liquidated collateral assets were SOL (approximately $567k), cbBTC (approximately $372k), and JUPSOL (approximately $264k).
+## Scope and limitations
 
-## Known Limitations
+This is a historical liquidation reconstruction, not yet a forward-looking position-level risk model. Distance-to-liquidation, stress testing, and liquidation-at-risk analysis are possible extensions, but they are outside the current scope.
 
-The historical Solana price data available through Dune's [`prices.hour`](https://dune.com/data/prices.hour) table has hourly resolution, which cannot capture minute-by-minute price movements around individual liquidation events. USD-denominated values for collateral seized and debt repaid should therefore be treated as estimates rather than exact transaction-time valuations.
+USD values are estimates. Dune's [`prices.hour`](https://dune.com/data/prices.hour) table has hourly resolution and cannot capture minute-by-minute price movements during a liquidation event. The analysis therefore does not treat the difference between collateral seized and debt repaid as realized liquidator profit.
 
-More precise price data would allow better estimation of the value captured during individual liquidations. The dataset does not attempt to label the difference between collateral value and debt repaid as realized liquidator profit.
+## Data sources
+
+- [`solana.instruction_calls`](https://dune.com/data/solana.instruction_calls)
+- [`prices.hour`](https://dune.com/data/prices.hour)
