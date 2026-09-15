@@ -11,7 +11,7 @@ The analysis is available in the [Jupiter Lend Liquidations and Flash Loans dash
 
 ![Jupiter Lend liquidation dashboard](docs/jupiter-lend-liquidation-dashboard.png)
 
-## What I found
+## Major Findings
 
 The October 10 liquidation cascade produced:
 
@@ -20,7 +20,25 @@ The October 10 liquidation cascade produced:
 - Approximately $1.29M in estimated debt repaid through Jupiter Lend
 - Nine wallets taking part in liquidations
 - SOL, cbBTC, and JUPSOL as the largest liquidated collateral assets, at approximately $567k, $372k, and $264k respectively
-- Kamino providing liquidity for 141 of 456 flashloan-assisted liquidations, by record count
+
+### Flashloan classification
+
+| Lender | Records |
+| --- | ---: |
+| Jupiter | 315 |
+| Kamino | 141 |
+| Total | 456 |
+
+The statement that Kamino supplied fewer than half of flashloan-assisted liquidations is count-based: 141 of 456 records, or approximately 31%.
+
+### Snapshot totals
+
+| Measure | Estimated USD value |
+| --- | ---: |
+| Collateral seized | $1,334,561.85 |
+| Debt repaid | $1,290,393.57 |
+
+The `$1.29M` figure refers to estimated debt repaid. The estimated value of collateral seized is approximately `$1.335M`. Neither figure should be interpreted as realized liquidator profit.
 
 ## How the dataset is built
 
