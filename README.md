@@ -2,7 +2,7 @@
 
 Jupiter Lend is a Solana lending market built on Fluid's lending architecture. I built this project to understand what happened during the October 10, 2025 liquidation event, including which positions were liquidated, what collateral was seized, how much debt was repaid, who executed the liquidations, and how flashloans were used.
 
-I decoded raw Solana instructions in Dune to produce a transaction-level dataset that can be explored by asset, position, liquidator, and transaction.
+I decoded raw Solana instructions in Dune using SQL to produce a transaction-level dataset that can be explored by asset, position, liquidator, and transaction.
 
 ## Dashboard
 
