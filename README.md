@@ -1,8 +1,9 @@
 # Jupiter Lend Liquidations on Solana
 
-Jupiter Lend is a Solana lending market built on Fluid's lending architecture. I built this project to understand what happened during the October 10, 2025 liquidation event: which positions were liquidated, what collateral was seized, how much debt was repaid, who executed the liquidations, and how flashloans were used.
+Jupiter Lend is a Solana lending market built on Fluid's lending architecture.
 
-The work starts from raw Solana instructions in Dune rather than a protocol-level liquidation table. The result is a transaction-level dataset that can be explored by asset, position, liquidator, and transaction.
+For this project, I decoded raw Solana instructions in Dune using SQL to produce a transaction-level dataset of Jupiter Lend's liquidations. I built this project to understand what happened during the October 10, 2025 liquidation event, including which positions were liquidated, what collateral was seized, how much debt was repaid, who executed the liquidations, and how flashloans were used.
+
 
 ## Dashboard
 
@@ -34,7 +35,7 @@ The SQL queries:
 
 The detailed decoding logic is documented in [`docs/liquidation-methodology.md`](docs/liquidation-methodology.md), with validation notes in [`docs/validation.md`](docs/validation.md).
 
-## Repository structure
+## Repo structure
 
 - `data/` contains the October 10, 2025 liquidation and flashloan exports, along with their schemas.
 - `sql/` contains the DuneSQL queries used to produce the datasets.
@@ -48,14 +49,15 @@ USD values are estimates. Dune's [`prices.hour`](https://dune.com/data/prices.ho
 
 More precise price data would allow better estimation of the value captured during individual liquidations.
 
-## Possible next steps
+## Data sources
+
+- [`solana.instruction_calls`](https://dune.com/data/solana.instruction_calls)
+- [`prices.hour`](https://dune.com/data/prices.hour)
+
+
+## Next steps
 
 - Position-level risk modeling
 - Distance-to-Liquidation (DTL)
 - Stress testing
 - Liquidation-at-Risk analysis
-
-## Data sources
-
-- [`solana.instruction_calls`](https://dune.com/data/solana.instruction_calls)
-- [`prices.hour`](https://dune.com/data/prices.hour)

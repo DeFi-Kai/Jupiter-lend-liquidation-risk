@@ -1,13 +1,7 @@
-# Data
-
-This dataset contains decoded Jupiter Lend liquidation events and flashloans from October 10, 2025. It was derived from raw Solana instruction data using the methodology described in [`docs/liquidation-methodology.md`](../docs/liquidation-methodology.md). Token amounts have been decimal-adjusted.
-
 ## Files
 
 - `liquidations_2025-10-10.csv`: Transaction-level liquidation records.
 - `flashloans_2025-10-10.csv`: Flashloan records associated with liquidation transactions.
-
-The CSV files contain the October 10, 2025 exports: 484 liquidation records and 456 flashloan records, excluding headers.
 
 ## Liquidation Columns
 
