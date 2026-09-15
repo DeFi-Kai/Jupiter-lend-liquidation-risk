@@ -34,7 +34,7 @@ The SQL queries:
 
 The detailed decoding logic is documented in [`docs/liquidation-methodology.md`](docs/liquidation-methodology.md), with validation notes in [`docs/validation.md`](docs/validation.md).
 
-## Repository structure
+## Repo structure
 
 - `data/` contains the October 10, 2025 liquidation and flashloan exports, along with their schemas.
 - `sql/` contains the DuneSQL queries used to produce the datasets.
@@ -48,14 +48,16 @@ USD values are estimates. Dune's [`prices.hour`](https://dune.com/data/prices.ho
 
 More precise price data would allow better estimation of the value captured during individual liquidations.
 
-## Possible next steps
+## Data sources
+
+- [`solana.instruction_calls`](https://dune.com/data/solana.instruction_calls)
+- [`prices.hour`](https://dune.com/data/prices.hour)
+
+
+## Next steps
 
 - Position-level risk modeling
 - Distance-to-Liquidation (DTL)
 - Stress testing
 - Liquidation-at-Risk analysis
 
-## Data sources
-
-- [`solana.instruction_calls`](https://dune.com/data/solana.instruction_calls)
-- [`prices.hour`](https://dune.com/data/prices.hour)
