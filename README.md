@@ -16,7 +16,7 @@ The October 10 liquidation cascade produced:
 
 - 484 reconstructed liquidation records
 - 456 associated flashloan records
-- Approximately $1.29M in liquidations processed through Jupiter Lend
+- ~$1.29M in debt repaid through Jupiter Lend
 - Nine wallets taking part in liquidations
 - SOL, cbBTC, and JUPSOL as the largest liquidated collateral assets, at approximately $567k, $372k, and $264k respectively
 - Kamino providing liquidity for fewer than half of the flashloan-assisted liquidations
