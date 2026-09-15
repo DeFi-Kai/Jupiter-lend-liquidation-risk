@@ -57,8 +57,6 @@ The detailed decoding logic is documented in [`docs/liquidation-methodology.md`]
 
 ## Scope and limitations
 
-This is a historical liquidation reconstruction, not yet a forward-looking position-level risk model. Distance-to-liquidation, stress testing, and liquidation-at-risk analysis are possible extensions, but they are outside the current scope.
-
 USD values are estimates. Dune's [`prices.hour`](https://dune.com/data/prices.hour) table has hourly resolution and cannot capture minute-by-minute price movements during a liquidation event. The analysis therefore does not treat the difference between collateral seized and debt repaid as realized liquidator profit.
 
 More precise price data would allow better estimation of the value captured during individual liquidations.
