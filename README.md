@@ -4,18 +4,12 @@ Jupiter Lend is a lending venue on Solana and part of Jupiter's broader product 
 
 This project examines Jupiter Lend's onchain lending activity, beginning with historical liquidations. The liquidation dataset is built using DuneSQL and reconstructs events from raw data to identify liquidated positions, collateral seized, debt repaid, liquidators, and the use of flashloans.
 
-**Current scope:** This repo contains the completed historical liquidation decoding and analysis. Position-level risk modeling, distance-to-liquidation, stress testing, and liquidation-at-risk analysis are not yet implemented.
+Position-level risk modeling, distance-to-liquidation, stress testing, and liquidation-at-risk analysis are not yet implemented.
 
 Repo structure:
 - `data/`: October 10, 2025 liquidation and flashloan dataset exports and schemas.
 - `sql/`: Reusable DuneSQL queries for producing the datasets.
 - `docs/`: Liquidation methodology and validation notes.
-
-## Historical Liquidation Dashboard
-
-This dashboard summarizes the historical October 10, 2025 liquidation analysis.
-
-![Jupiter Lend liquidation dashboard](docs/jupiter-lend-liquidation-dashboard.png)
 
 ## Scope and Status
 
@@ -30,11 +24,11 @@ This dashboard summarizes the historical October 10, 2025 liquidation analysis.
 - [ ] Stress testing
 - [ ] Liquidation-at-risk analysis
 
-## Data Sources
+## Historical Liquidation Dashboard
 
-- Dune
-  - [`solana.instruction_calls`](https://dune.com/data/solana.instruction_calls)
-  - [`prices.hour`](https://dune.com/data/prices.hour)
+This dashboard summarizes the historical October 10, 2025 liquidation analysis.
+
+![Jupiter Lend liquidation dashboard](docs/jupiter-lend-liquidation-dashboard.png)
 
 ## High-Level Methodology
 
@@ -57,6 +51,12 @@ Analysis of the October 10, 2025 liquidation cascade found:
 - Fewer than 50% of flashloan-assisted liquidations used liquidity from Kamino.
 - Nine wallet accounts took part in liquidations.
 - The three largest liquidated collateral assets were SOL (~$567k), cbBTC (~$372k), and JUPSOL (~$264k).
+
+## Data Sources
+
+- Dune
+  - [`solana.instruction_calls`](https://dune.com/data/solana.instruction_calls)
+  - [`prices.hour`](https://dune.com/data/prices.hour)
 
 ## Known Limitations
 
