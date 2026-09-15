@@ -38,7 +38,7 @@ The statement that Kamino supplied fewer than half of flashloan-assisted liquida
 | Collateral seized | $1,334,561.85 |
 | Debt repaid | $1,290,393.57 |
 
-The `$1.29M` figure refers to estimated debt repaid. The estimated value of collateral seized is approximately `$1.335M`. Neither figure should be interpreted as realized liquidator profit.
+The `$1.29M` figure refers to estimated debt repaid. The estimated value of collateral seized is approximately `$1.335M`.
 
 ## How the dataset is built
 
