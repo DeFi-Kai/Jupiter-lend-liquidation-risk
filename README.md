@@ -4,21 +4,26 @@ Jupiter Lend is a lending venue on Solana and part of Jupiter's broader product 
 
 This project examines Jupiter Lend's onchain lending activity, beginning with historical liquidations. The liquidation dataset is built using DuneSQL and reconstructs events from raw data to identify liquidated positions, collateral seized, debt repaid, liquidators, and the use of flashloans.
 
-The project is being extended into risk analysis and stress testing.
+**Current scope:** This repository contains the completed historical liquidation decoding and analysis. Position-level risk modeling, distance-to-liquidation, stress testing, and liquidation-at-risk analysis are planned extensions and are not yet implemented.
 
 - `data/`: October 10, 2025 liquidation and flashloan dataset exports and schemas.
 - `sql/`: Reusable DuneSQL queries for producing the datasets.
 - `docs/`: Liquidation methodology and validation notes.
 
-## Dashboard
+## Historical Liquidation Dashboard
+
+This dashboard summarizes the historical October 10, 2025 liquidation analysis. It is not a position-level risk model.
 
 ![Jupiter Lend liquidation dashboard](docs/jupiter-lend-liquidation-dashboard.png)
 
-## Roadmap
+## Scope and Status
 
+**Completed**
 - [x] Historical liquidation dataset
 - [x] Historical flashloan dataset
 - [x] October 10, 2025 liquidation analysis
+
+**Planned**
 - [ ] Position-level risk modeling
 - [ ] Distance-to-Liquidation (DTL)
 - [ ] Stress testing
