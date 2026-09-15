@@ -46,6 +46,15 @@ This is a historical liquidation reconstruction, not yet a forward-looking posit
 
 USD values are estimates. Dune's [`prices.hour`](https://dune.com/data/prices.hour) table has hourly resolution and cannot capture minute-by-minute price movements during a liquidation event. The analysis therefore does not treat the difference between collateral seized and debt repaid as realized liquidator profit.
 
+More precise price data would allow better estimation of the value captured during individual liquidations.
+
+## Possible next steps
+
+- Position-level risk modeling
+- Distance-to-Liquidation (DTL)
+- Stress testing
+- Liquidation-at-Risk analysis
+
 ## Data sources
 
 - [`solana.instruction_calls`](https://dune.com/data/solana.instruction_calls)
