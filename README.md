@@ -22,7 +22,7 @@ Analysis of the October 10, 2025 liquidation cascade found:
 - ~$1.29M in liquidations were processed through Jupiter Lend.
 - Fewer than 50% of flashloan-assisted liquidations used liquidity from Kamino.
 - Nine wallet accounts took part in liquidations.
-- The three largest liquidated collateral assets were SOL (~$567k), cbBTC (~$372k), and JUPSOL (~$264k).
+- The three largest liquidated collateral assets were SOL ( ~$567k), cbBTC ( ~$372k), and JUPSOL ( ~$264k).
 
 ![Jupiter Lend liquidation dashboard](docs/jupiter-lend-liquidation-dashboard.png)
 
