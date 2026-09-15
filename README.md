@@ -29,8 +29,6 @@ The October 10 liquidation cascade produced:
 | Kamino | 141 |
 | Total | 456 |
 
-The statement that Kamino supplied fewer than half of flashloan-assisted liquidations is count-based: 141 of 456 records, or approximately 31%.
-
 ### Snapshot totals
 
 | Measure | Estimated USD value |
@@ -38,18 +36,16 @@ The statement that Kamino supplied fewer than half of flashloan-assisted liquida
 | Collateral seized | $1,334,561.85 |
 | Debt repaid | $1,290,393.57 |
 
-The `$1.29M` figure refers to estimated debt repaid. The estimated value of collateral seized is approximately `$1.335M`.
-
 ## How the dataset is built
 
-The SQL queries:
+The SQL query:
 
-1. Identify Jupiter Lend `liquidate` instructions using the protocol's instruction discriminator.
-2. Extract the position, collateral mint, debt mint, and liquidator from the instruction accounts.
-3. Trace inner liquidity instructions to reconstruct debt repaid and collateral withdrawn.
-4. Identify flashloans and classify the lender.
-5. Normalize raw token amounts using token decimals.
-6. Join the events to Dune's hourly price data to estimate USD values.
+1. Identifies Jupiter Lend `liquidate` instructions using the protocol's instruction discriminator.
+2. Extracts the position, collateral mint, debt mint, and liquidator from the instruction accounts.
+3. Traces inner liquidity instructions to reconstruct debt repaid and collateral withdrawn.
+4. Identifies flashloans and classify the lender.
+5. Normalizes raw token amounts using token decimals.
+6. Joins the events to Dune's hourly price data to estimate USD values.
 
 The detailed decoding logic is documented in [`docs/liquidation-methodology.md`](docs/liquidation-methodology.md), with validation notes in [`docs/validation.md`](docs/validation.md).
 
