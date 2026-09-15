@@ -4,15 +4,16 @@ Jupiter Lend is a lending venue on Solana and part of Jupiter's broader product 
 
 This project examines Jupiter Lend's onchain lending activity, beginning with historical liquidations. The liquidation dataset is built using DuneSQL and reconstructs events from raw data to identify liquidated positions, collateral seized, debt repaid, liquidators, and the use of flashloans.
 
-**Current scope:** This repository contains the completed historical liquidation decoding and analysis. Position-level risk modeling, distance-to-liquidation, stress testing, and liquidation-at-risk analysis are planned extensions and are not yet implemented.
+**Current scope:** This repo contains the completed historical liquidation decoding and analysis. Position-level risk modeling, distance-to-liquidation, stress testing, and liquidation-at-risk analysis are not yet implemented.
 
+Repo structure:
 - `data/`: October 10, 2025 liquidation and flashloan dataset exports and schemas.
 - `sql/`: Reusable DuneSQL queries for producing the datasets.
 - `docs/`: Liquidation methodology and validation notes.
 
 ## Historical Liquidation Dashboard
 
-This dashboard summarizes the historical October 10, 2025 liquidation analysis. It is not a position-level risk model.
+This dashboard summarizes the historical October 10, 2025 liquidation analysis.
 
 ![Jupiter Lend liquidation dashboard](docs/jupiter-lend-liquidation-dashboard.png)
 
@@ -52,13 +53,13 @@ This produces a transaction-level dataset that can be used to analyze liquidatio
 
 Analysis of the October 10, 2025 liquidation cascade found:
 
-- Approximately $1.29M in liquidations were processed through Jupiter Lend.
+- ~$1.29M in liquidations were processed through Jupiter Lend.
 - Fewer than 50% of flashloan-assisted liquidations used liquidity from Kamino.
 - Nine wallet accounts took part in liquidations.
-- The three largest liquidated collateral assets were SOL (approximately $567k), cbBTC (approximately $372k), and JUPSOL (approximately $264k).
+- The three largest liquidated collateral assets were SOL (~$567k), cbBTC (~$372k), and JUPSOL (~$264k).
 
 ## Known Limitations
 
 The historical Solana price data available through Dune's [`prices.hour`](https://dune.com/data/prices.hour) table has hourly resolution, which cannot capture minute-by-minute price movements around individual liquidation events. USD-denominated values for collateral seized and debt repaid should therefore be treated as estimates rather than exact transaction-time valuations.
 
-More precise price data would allow better estimation of the value captured during individual liquidations. The dataset does not attempt to label the difference between collateral value and debt repaid as realized liquidator profit.
+More precise price data would allow better estimation of the value captured during individual liquidations.
