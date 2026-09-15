@@ -2,7 +2,7 @@
 
 Jupiter Lend is a lending venue on Solana. This project examines Jupiter Lend's onchain lending activity, beginning with historical liquidations. 
 
-The liquidation dataset is built using DuneSQL and reconstructs events from raw data to identify liquidated positions, collateral seized, debt repaid, liquidators, and the use of flashloans.
+The liquidation dataset is built using DuneSQL and reconstructs events from raw onchain data to identify liquidated positions, collateral seized, debt repaid, liquidators, and the use of flashloans.
 
 Next steps: Implementing Position-level risk modeling, distance-to-liquidation, stress testing, and liquidation-at-risk analysis.
 
