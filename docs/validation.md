@@ -16,12 +16,6 @@ These transactions were checked against Solana mainnet transaction metadata and 
 
 The outer `liquidate` instruction's `debt_amt` is retained as a debt cross-check. It is not used to infer collateral: the collateral amount comes from the collateral-side inner `Operate` leg.
 
-## Snapshot checks
-
-The checked-in liquidation export contains 484 rows with no duplicate `(tx_id, outer_instruction_index)` keys and no missing fields. The flashloan export contains 456 rows with no duplicate `(tx_id, flash_loan_outer_instruction_index)` keys. The snapshot contains nine unique liquidator wallets.
-
-The checked-in snapshot checks cover row counts, duplicate keys, missing fields, and liquidator coverage. A full-run Dune reconciliation is intentionally outside the current repository scope.
-
 ## Limits
 
 The representative transactions validate the decoder's design, but they do not replace running the full Dune check across all 484 liquidation rows. Smart vaults are outside the current dataset until their activity can be reconstructed and independently validated.
