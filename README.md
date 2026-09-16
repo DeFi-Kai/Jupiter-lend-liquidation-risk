@@ -21,7 +21,14 @@ The October 10 liquidation cascade produced:
 - Nine wallets taking part in liquidations
 - The largest liquidated collateral assets SOL (~$567k), cbBTC (~$372k), and JUPSOL (~$264k)
 
-### Flashloan classification
+### Snapshot totals
+
+| Measure | Estimated USD value |
+| --- | ---: |
+| Collateral seized | $1,334,561.85 |
+| Debt repaid | $1,290,393.57 |
+
+### Flashloans
 
 | Lender | Records |
 | --- | ---: |
@@ -29,12 +36,6 @@ The October 10 liquidation cascade produced:
 | Kamino | 141 |
 | Total | 456 |
 
-### Snapshot totals
-
-| Measure | Estimated USD value |
-| --- | ---: |
-| Collateral seized | $1,334,561.85 |
-| Debt repaid | $1,290,393.57 |
 
 ## How the dataset is built
 
