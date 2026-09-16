@@ -4,13 +4,6 @@ Jupiter Lend is a Solana lending market built on Fluid's lending architecture.
 
 For this project, I decoded raw Solana instructions in Dune using SQL to produce a transaction-level dataset of Jupiter Lend's liquidations. I built this project to understand what happened during the October 10, 2025 liquidation event, including which positions were liquidated, what collateral was seized, how much debt was repaid, who executed the liquidations, and how flashloans were used.
 
-
-## Dashboard
-
-The analysis is available in the [Jupiter Lend Liquidations and Flash Loans dashboard on Dune](https://dune.com/defi_kai/jupiter-lend-liquidations-and-flash-loans-10102025).
-
-![Jupiter Lend liquidation dashboard](docs/jupiter-lend-liquidation-dashboard.png)
-
 ## Major Findings
 
 The October 10 liquidation cascade produced:
@@ -20,6 +13,13 @@ The October 10 liquidation cascade produced:
 - ~$1.29M in estimated debt repaid and ~$1.33M in estimated collateral seized through Jupiter Lend
 - Nine wallets taking part in liquidations
 - The largest liquidated collateral assets SOL ( ~$567k), cbBTC ( ~$372k), and JUPSOL ( ~$264k)
+
+## Dashboard
+
+The analysis is available in the [Jupiter Lend Liquidations and Flash Loans dashboard on Dune](https://dune.com/defi_kai/jupiter-lend-liquidations-and-flash-loans-10102025).
+
+![Jupiter Lend liquidation dashboard](docs/jupiter-lend-liquidation-dashboard.png)
+
 
 ### Snapshot totals
 
