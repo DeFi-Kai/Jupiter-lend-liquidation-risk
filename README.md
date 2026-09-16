@@ -10,23 +10,10 @@ The October 10 liquidation cascade produced:
 
 - 484 liquidation records
 - 456 associated flashloan records
-- ~$1.29M in estimated debt repaid and ~$1.33M in estimated collateral seized through Jupiter Lend
+- ~$1.29M in estimated debt repaid
+- ~$1.33M in estimated collateral seized
 - Nine wallets taking part in liquidations
 - The largest liquidated collateral assets SOL ( ~$567k), cbBTC ( ~$372k), and JUPSOL ( ~$264k)
-
-## Dashboard
-
-The analysis is available in the [Jupiter Lend Liquidations and Flash Loans dashboard on Dune](https://dune.com/defi_kai/jupiter-lend-liquidations-and-flash-loans-10102025).
-
-![Jupiter Lend liquidation dashboard](docs/jupiter-lend-liquidation-dashboard.png)
-
-
-### Snapshot totals
-
-| Measure | Estimated USD value |
-| --- | ---: |
-| Collateral seized | $1,334,561.85 |
-| Debt repaid | $1,290,393.57 |
 
 ### Flashloans
 
@@ -35,6 +22,13 @@ The analysis is available in the [Jupiter Lend Liquidations and Flash Loans dash
 | Jupiter | 315 |
 | Kamino | 141 |
 | Total | 456 |
+
+
+## Dashboard
+
+The analysis is available in the [Jupiter Lend Liquidations and Flash Loans dashboard on Dune](https://dune.com/defi_kai/jupiter-lend-liquidations-and-flash-loans-10102025).
+
+![Jupiter Lend liquidation dashboard](docs/jupiter-lend-liquidation-dashboard.png)
 
 
 ## How the dataset is built
