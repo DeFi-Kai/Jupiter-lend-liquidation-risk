@@ -46,19 +46,31 @@ The SQL query:
 
 The detailed decoding logic is documented in [`docs/liquidation-methodology.md`](docs/liquidation-methodology.md), with validation notes in [`docs/validation.md`](docs/validation.md).
 
-For a representative transaction, the raw Dune query returned 13 instruction calls. The decoder used the outer Jupiter Lend `liquidate` call and its two inner Liquidity `operate` calls:
+The dataset started as raw Solana transaction data. This example shows what one transaction looked like before and after decoding.
 
-| Outer index | Inner index | Program | Payload prefix | Role |
-| ---: | ---: | --- | --- | --- |
-| 3 | - | Jupiter Lend | `DFB3E27D...` | Identifies the liquidation |
-| 3 | 9 | Jupiter Lend Liquidity | `D96AD063...` | Debt settlement leg |
-| 3 | 10 | Jupiter Lend Liquidity | `D96AD063...` | Collateral settlement leg |
+#### Before: raw transaction data
 
-The decoder then mapped account positions to the debt mint, collateral mint, and liquidated position; decoded the little-endian amounts; normalized token decimals; and joined hourly prices.
+The raw query returned 13 instruction calls. These were the three calls relevant to the liquidation:
 
-| Transaction | Debt repaid | Collateral seized | Debt value | Collateral value |
-| --- | ---: | ---: | ---: | ---: |
-| `M1zoo3...` | `99.999999 USDC` | `0.512291352 SOL` | `$100.76` | `$96.84` |
+| Call | Payload excerpt | What it contains |
+| --- | --- | --- |
+| Main liquidation call | `DFB3E27D302E274A00E1F505...` | Encoded liquidation parameters |
+| Nested settlement call | `D96AD06374972A87...` | Encoded debt movement |
+| Nested settlement call | `D96AD06374972A87...` | Encoded collateral movement |
+
+The full raw query is available on [Dune](DUNE_RAW_QUERY_URL).
+
+#### After: decoded liquidation record
+
+| Field | Result |
+| --- | --- |
+| Transaction | `M1zoo3...` |
+| Debt repaid | `99.999999 USDC` |
+| Collateral seized | `0.512291352 SOL` |
+| Debt value | `$100.76` |
+| Collateral value | `$96.84` |
+
+The decoder identified the instruction types from their payload prefixes, mapped the relevant accounts, extracted the raw integer amounts (`99,999,999` and `512,291,352`), converted them using token decimals, and joined hourly prices to estimate USD values.
 
 ## Repo structure
 
