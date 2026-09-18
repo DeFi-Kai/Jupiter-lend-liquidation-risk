@@ -50,27 +50,29 @@ The dataset started as raw Solana transaction data. This example shows what one 
 
 #### Before: raw transaction data
 
-The raw query returned 13 instruction calls. These were the three calls relevant to the liquidation:
+This is what one raw outer liquidation entry looked like before decoding:
 
-| Call | Payload excerpt | What it contains |
-| --- | --- | --- |
-| Main liquidation call | `DFB3E27D302E274A00E1F505...` | Encoded liquidation parameters |
-| Nested settlement call | `D96AD06374972A87...` | Encoded debt movement |
-| Nested settlement call | `D96AD06374972A87...` | Encoded collateral movement |
+| Raw field | Value |
+| --- | --- |
+| `block_time` | `2025-10-10 21:09:26` |
+| `tx_id` | `M1zoo3YJzi6D6S74zVaRm9b99Za4MjceAcQgxBufGP8kyjhjtMMN6s4bHN3JWLWjLFqXLutmYNtY9HDvAgbrC7u` |
+| `outer_instruction_index` | `3` |
+| `inner_instruction_index` | `NULL` |
+| `executing_account` | `jupr81YtYssSyPt8jbnGuiWon5f6x9TcDEFxYe3Bdzi` |
+| `tx_signer` | `ariZPxRj8PmzUR5mB3FVopbPUmYmCiTCLdvjW8tTQQ9` |
+| `account_arguments` | `ariZPxRj..., 63adf...` |
+| `payload_hex` | `DFB3E27D302E274A00E1F50500000000000000000000000000000000000000000001010400000001060201` |
+| `tx_success` | `true` |
 
 The full raw query is available on [Dune](DUNE_RAW_QUERY_URL).
 
 #### After: decoded liquidation record
 
-| Field | Result |
-| --- | --- |
-| Transaction | `M1zoo3...` |
-| Debt repaid | `99.999999 USDC` |
-| Collateral seized | `0.512291352 SOL` |
-| Debt value | `$100.76` |
-| Collateral value | `$96.84` |
+| Transaction | Outer index | Debt repaid | Collateral seized | Debt value | Collateral value |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `M1zoo3...` | `3` | `99.999999 USDC` | `0.512291352 SOL` | `$100.76` | `$96.84` |
 
-The decoder identified the instruction types from their payload prefixes, mapped the relevant accounts, extracted the raw integer amounts (`99,999,999` and `512,291,352`), converted them using token decimals, and joined hourly prices to estimate USD values.
+The outer row identifies the liquidation. The nested `operate` calls in the same instruction group supplied the debt and collateral movements. The decoder extracted the raw integer amounts (`99,999,999` and `512,291,352`), converted them using token decimals, and joined hourly prices to estimate USD values.
 
 ## Repo structure
 
