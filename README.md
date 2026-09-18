@@ -1,6 +1,6 @@
 # Jupiter Lend Liquidations on Solana
 
-Jupiter Lend is a credit-market on the Solana blockchain, built on Fluid's lending architecture. Users can submit collateral, and take out loans up to a specific loan-to-value (LTV) ratio. If a positions collateral value falls below the loan the position is submitted for liquidation. 
+Jupiter Lend is a credit-market on the Solana blockchain, built on Fluid's lending architecture. Users can submit collateral, and take out loans up to a specific loan-to-value (LTV) ratio. If a positions collateral value falls below the loan the position is submitted for liquidation. The platform performs liquidations to avoid defaulted loans and bad-debt incurred to the system. 
 
 Blockchain-based lending venues are increasingly being used by Fintech apps like Robinhood and Coinbase to offer users products to leverage their holdings, and for other users to provide loans to those users. 
 
