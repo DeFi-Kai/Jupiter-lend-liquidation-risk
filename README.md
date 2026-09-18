@@ -46,6 +46,20 @@ The SQL query:
 
 The detailed decoding logic is documented in [`docs/liquidation-methodology.md`](docs/liquidation-methodology.md), with validation notes in [`docs/validation.md`](docs/validation.md).
 
+For a representative transaction, the raw Dune query returned 13 instruction calls. The decoder used the outer Jupiter Lend `liquidate` call and its two inner Liquidity `operate` calls:
+
+| Outer index | Inner index | Program | Payload prefix | Role |
+| ---: | ---: | --- | --- | --- |
+| 3 | - | Jupiter Lend | `DFB3E27D...` | Identifies the liquidation |
+| 3 | 9 | Jupiter Lend Liquidity | `D96AD063...` | Debt settlement leg |
+| 3 | 10 | Jupiter Lend Liquidity | `D96AD063...` | Collateral settlement leg |
+
+The decoder then mapped account positions to the debt mint, collateral mint, and liquidated position; decoded the little-endian amounts; normalized token decimals; and joined hourly prices.
+
+| Transaction | Debt repaid | Collateral seized | Debt value | Collateral value |
+| --- | ---: | ---: | ---: | ---: |
+| `M1zoo3...` | `99.999999 USDC` | `0.512291352 SOL` | `$100.76` | `$96.84` |
+
 ## Repo structure
 
 - `data/` contains the October 10, 2025 liquidation and flashloan exports, along with their schemas.
