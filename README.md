@@ -68,9 +68,9 @@ The full raw query is available on [Dune](DUNE_RAW_QUERY_URL).
 
 #### After: decoded liquidation record
 
-| Transaction | Outer index | Debt repaid | Collateral seized | Debt value | Collateral value |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| `M1zoo3...` | `3` | `99.999999 USDC` | `0.512291352 SOL` | `$100.76` | `$96.84` |
+| Transaction | Debt repaid | Debt token | Collateral seized | Collateral token | Debt value | Collateral value |
+| --- | ---: | --- | ---: | --- | ---: | ---: |
+| `M1zoo3...` | `99.999999` | `USDC` | `0.512291352` | `SOL` | `$100.76` | `$96.84` |
 
 The outer row identifies the liquidation. The nested `operate` calls in the same instruction group supplied the debt and collateral movements. The decoder extracted the raw integer amounts (`99,999,999` and `512,291,352`), converted them using token decimals, and joined hourly prices to estimate USD values.
 
