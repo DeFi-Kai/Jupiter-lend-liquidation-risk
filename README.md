@@ -64,7 +64,7 @@ This is what one raw outer liquidation entry looked like before decoding:
 | `payload_hex` | `DFB3E27D302E274A00E1F50500000000000000000000000000000000000000000001010400000001060201` |
 | `tx_success` | `true` |
 
-The full raw query is available on [Dune](DUNE_RAW_QUERY_URL).
+The full raw query is available on [Dune](https://dune.com/queries/8768594).
 
 #### After: decoded liquidation record
 
