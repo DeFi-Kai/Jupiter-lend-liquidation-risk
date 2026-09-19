@@ -1,8 +1,8 @@
 # Jupiter Lend Liquidations Dataset
 
-Jupiter Lend is a credit-market on the Solana blockchain, built on Fluid's lending architecture. Users can submit collateral, and take out loans up to a specific loan-to-value (LTV) ratio. If a positions collateral value falls below the loan the position is submitted for liquidation. The platform performs programmatic liquidations to avoid defaulted loans and bad-debt incurred to the system. 
+Jupiter Lend is a credit-market on the Solana blockchain, built on Fluid's lending architecture. Users can submit collateral, and take out loans up to a specific loan-to-value (LTV) ratio. If a positions collateral value falls below the loan the position is submitted for liquidation. Blockchain-based lending venues are increasingly being used by Fintech apps like Robinhood and Coinbase to offer users products to leverage their holdings, and for other users to provide loans to those users. 
 
-Blockchain-based lending venues are increasingly being used by Fintech apps like Robinhood and Coinbase to offer users products to leverage their holdings, and for other users to provide loans to those users. 
+The platform performs programmatic liquidations to avoid defaulted loans and bad-debt incurred to the system. 
 
 I built this project to understand what happened during the October 10, 2025 liquidation event, including which positions were liquidated, what collateral was seized, how much debt was repaid, who executed the liquidations, and how flashloans were used.
 
