@@ -10,29 +10,21 @@ The analysis is available in the [Jupiter Lend Liquidations and Flash Loans dash
 
 ## Background 
 
-Jupiter Lend is a credit-market on the Solana blockchain. Blockchain credit-markets are increasingly being used by Fintech apps like Robinhood and Coinbase to offer users products to leverage their holdings, and for other users to provide loans to those users. Users submit cryptocurrencies and tokenized assets as collateral, and take out loans up to a specific loan-to-value (LTV) ratio. If a positions collateral value falls below the loan value, the position is submitted for liquidation. The platform performs programmatic liquidations to avoid defaulted loans and bad-debt incurred to the system. 
+Jupiter Lend is a credit-market on the Solana blockchain. Blockchain credit-markets are integrating with Fintech apps like Robinhood and Coinbase to offer users products to leverage their holdings, and for other users to provide loans to those users. Users submit cryptocurrencies and tokenized assets as collateral, and take out loans up to a specific loan-to-value (LTV) ratio. If a positions collateral value falls below the loan value, the position is submitted for liquidation. The platform performs programmatic liquidations to avoid defaulted loans and bad-debt incurred to the system. 
 
-A permissionless network of liquidators monitor loan positions to repay debt and seize collateral --performing a liquidation-- in exchange for a penalty fee. Liquidators  
-
+A permissionless network of liquidators monitor loan positions to repay debt and seize collateral --performing a liquidation-- in exchange for a penalty fee. Liquidators can borrow liquidity from Jupiter Lend using flashloans to process liquidations. 
 
 ## Major Findings
 
 The October 10 liquidation cascade produced:
 
 - 484 liquidation records
-- 456 associated flashloan records
+- 456 associated flashloan records from Jupiter (315) and Kamino (141)
 - ~$1.29M in estimated debt repaid
 - ~$1.33M in estimated collateral seized
 - Nine wallets taking part in liquidations
 - The largest liquidated collateral assets SOL ( ~$567k), cbBTC ( ~$372k), and JUPSOL ( ~$264k)
 
-### Flashloans
-
-| Lender | Records |
-| --- | ---: |
-| Jupiter | 315 |
-| Kamino | 141 |
-| Total | 456 |
 
 ## How the dataset is built
 
@@ -72,9 +64,15 @@ The full raw query is available on [Dune](https://dune.com/queries/8768594).
 
 #### After: decoded liquidation record
 
-| Transaction | Debt repaid | Debt token | Collateral seized | Collateral token | Debt value | Collateral value |
-| --- | ---: | --- | ---: | --- | ---: | ---: |
-| `M1zoo3...` | `99.999999` | `USDC` | `0.512291352` | `SOL` | `$100.76` | `$96.84` |
+| Decoded field     | Value         |
+| ----------------- | ------------- |
+| Transaction       | `M1zoo3...`   |
+| Debt repaid       | `99.999999`   |
+| Debt token        | `USDC`        |
+| Collateral seized | `0.512291352` |
+| Collateral token  | `SOL`         |
+| Debt value        | `$100.76`     |
+| Collateral value  | `$96.84`      |
 
 The outer row identifies the liquidation. The nested `operate` calls in the same instruction group supplied the debt and collateral movements. The decoder extracted the raw integer amounts (`99,999,999` and `512,291,352`), converted them using token decimals, and joined hourly prices to estimate USD values.
 
