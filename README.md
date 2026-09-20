@@ -10,9 +10,15 @@ The analysis is available in the [Jupiter Lend Liquidations and Flash Loans dash
 
 ## Background 
 
-Jupiter Lend is a credit-market on the Solana blockchain. Blockchain credit-markets are integrating with Fintech apps like Robinhood and Coinbase to offer users products to leverage their holdings, and for other users to provide loans to those users. Users submit cryptocurrencies and tokenized assets as collateral, and take out loans up to a specific loan-to-value (LTV) ratio. If a positions collateral value falls below the loan value, the position is submitted for liquidation. The platform performs programmatic liquidations to avoid defaulted loans and bad-debt incurred to the system. 
+Jupiter Lend is a credit market on the Solana blockchain. Blockchain credit markets allow users to supply assets as collateral, borrow against those assets, or provide liquidity that other users can borrow. Similar lending infrastructure is increasingly being integrated into fintech and digital-asset products.
 
-A permissionless network of liquidators monitor loan positions to repay debt and seize collateral --performing a liquidation-- in exchange for a penalty fee. Liquidators can borrow liquidity from Jupiter Lend using flashloans to process liquidations. 
+Borrowers deposit cryptocurrencies or tokenized assets as collateral and can borrow up to a specified loan-to-value (LTV) ratio. Each market also has a liquidation threshold that determines when a borrowing position becomes undercollateralized enough to be eligible for liquidation.
+
+When a position crosses its liquidation threshold, Jupiter Lend can programmatically liquidate part of the position to reduce the risk of default and bad debt to the protocol.
+
+Liquidations are carried out by a permissionless network of liquidators that monitor borrowing positions. During a liquidation, a liquidator repays a portion of the borrower’s debt and receives collateral in return, including a liquidation penalty.
+
+Liquidators can also use flashloans from Jupiter Lend to temporarily borrow the liquidity needed to execute a liquidation without supplying the capital upfront.
 
 ## Major Findings
 
@@ -118,9 +124,22 @@ More precise price data would allow better estimation of the value captured duri
 - [`prices.hour`](https://dune.com/data/prices.hour)
 
 
-## Next steps
+## Reproducibility
 
-- Position-level risk modeling
-- Distance-to-Liquidation (DTL)
-- Stress testing
-- Liquidation-at-Risk analysis
+### Prerequisites
+- A Dune account
+
+### Run the query
+1. Sign in to Dune.
+2. Create a new SQL query.
+3. Copy the contents of [`sql/liquidations.sql`](sql/liquidations.sql) into the Dune query editor.
+4. Replace the start and end date values with the desired UTC time range.
+
+   Example:
+
+   ```sql
+   TIMESTAMP '2025-10-10 00:00:00 UTC'
+   ```
+
+5. Run the query.
+6. Review or export the resulting liquidation dataset as needed.
