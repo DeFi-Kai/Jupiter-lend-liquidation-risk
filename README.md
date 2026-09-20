@@ -1,18 +1,19 @@
-# Jupiter Lend Liquidations Dataset
+# Jupiter Lend Liquidation Data: SQL Decoder, Dataset & Analysis
 
-Jupiter Lend is a credit-market on the Solana blockchain, built on Fluid's lending architecture. Blockchain-based lending venues are increasingly being used by Fintech apps like Robinhood and Coinbase to offer users products to leverage their holdings, and for other users to provide loans to those users. 
-
-Users can submit collateral, and take out loans up to a specific loan-to-value (LTV) ratio. If a positions collateral value falls below the loan the position is submitted for liquidation. The platform performs programmatic liquidations to avoid defaulted loans and bad-debt incurred to the system. 
-
-I built this project to understand what happened during the October 10, 2025 liquidation event, including which positions were liquidated, what collateral was seized, how much debt was repaid, who executed the liquidations, and how flashloans were used.
-
-Solana apps are built using Anchor, a framework for the Rust programming language. Blockchain data is recorded as unstructured events and data payloads so for this project, I decoded raw Solana instructions in Dune using SQL to produce a transaction-level dataset of Jupiter Lend's liquidations.
+SQL query and methodology for decoding Jupiter Lend Liquidations and flashloans. The queries reconstruct liquidation activity from raw Solana instructions in DuneSQL to identify liquidated positions, collateral seized, debt repaid, liquidators, and associated flashloans. The project includes a transaction-level dataset of Jupiter Lend liquidations and flashloans during the October 10, 2025 market selloff. 
 
 ## Dashboard
 
 The analysis is available in the [Jupiter Lend Liquidations and Flash Loans dashboard on Dune](https://dune.com/defi_kai/jupiter-lend-liquidations-and-flash-loans-10102025).
 
 ![Jupiter Lend liquidation dashboard](docs/jupiter-lend-liquidation-dashboard.png)
+
+## Background 
+
+Jupiter Lend is a credit-market on the Solana blockchain. Blockchain credit-markets are increasingly being used by Fintech apps like Robinhood and Coinbase to offer users products to leverage their holdings, and for other users to provide loans to those users. Users submit cryptocurrencies and tokenized assets as collateral, and take out loans up to a specific loan-to-value (LTV) ratio. If a positions collateral value falls below the loan value, the position is submitted for liquidation. The platform performs programmatic liquidations to avoid defaulted loans and bad-debt incurred to the system. 
+
+A permissionless network of liquidators monitor loan positions to repay debt and seize collateral --performing a liquidation-- in exchange for a penalty fee. Liquidators  
+
 
 ## Major Findings
 
@@ -34,6 +35,9 @@ The October 10 liquidation cascade produced:
 | Total | 456 |
 
 ## How the dataset is built
+
+Solana apps are built using Anchor, a framework for the Rust programming language. Blockchain data is recorded as unstructured events and data payloads so 
+
 
 The SQL query:
 
