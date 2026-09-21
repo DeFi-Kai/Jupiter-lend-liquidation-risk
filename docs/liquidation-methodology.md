@@ -14,7 +14,7 @@ The associated inner instructions are then used to reconstruct the debt repaid a
 
 ## Protocol and Instruction Identification
 
-Results are initially filtered using the Jupiter Lend borrow program, `jupr81YtYssSyPt8jbnGuiWon5f6x9TcDEFxYe3Bdzi`, and the `liquidate` instruction identified using the 8-byte Anchor discriminator: `dfb3e27d302e274a`.
+The query filters results using the Jupiter Lend borrow program, `jupr81YtYssSyPt8jbnGuiWon5f6x9TcDEFxYe3Bdzi`, and the `liquidate` instruction identified using the 8-byte Anchor discriminator: `dfb3e27d302e274a`.
 
 The outer instruction contains the accounts required to identify the position and assets involved in the liquidation:
 
