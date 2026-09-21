@@ -1,16 +1,26 @@
 # Liquidation Methodology
 
-Solana programs (smart contracts) are written in Anchor, a framework for the Rust programming language. Each program has a set of instructions that define actions. When a transaction occurs, instructions are recorded as data payloads. Each instruction prepends an 8-byte discriminator  
+Solana programs (smart contracts) define instructions that represent actions a program can execute, such as `supply`, when assets are supplied to a market, or `liquidate`, when a position is liquidated. 
 
+Jupiter Lend uses Anchor, a framework for building Solana programs in Rust. For the instructions analyzed in this dataset, the first 8 bytes of the instruction data contain a discriminator, which identifies the instruction type. The bytes that follow contain the instruction's serialized arguments.
 
-Each row represents one decoded Jupiter Lend liquidation instruction, uniquely identified by `tx_id + outer_instruction_index`.
+For example, the Jupiter Lend `liquidate` instruction begins with the discriminator:
 
+`dfb3e27d302e274a`
+
+A transaction can contain multiple top-level, or outer, instructions. During execution, an outer instruction can also invoke other programs through cross-program invocations (CPIs). These calls are recorded as inner instructions associated with the outer instruction that invoked them.
+
+In Dune's Solana instruction data, `outer_instruction_index` identifies the position of a top-level instruction within a transaction, while `inner_instruction_index` identifies instructions executed within that outer instruction.
+
+This analysis treats each Jupiter Lend `liquidate` instruction as a liquidation event. Each row in the resulting dataset is uniquely identified by:
+
+`tx_id + outer_instruction_index`
+
+The associated inner instructions are then used to reconstruct the debt repaid and collateral seized during that liquidation.
 
 ## Protocol and Instruction Identification
 
-Jupiter Lend borrow program: `jupr81YtYssSyPt8jbnGuiWon5f6x9TcDEFxYe3Bdzi`
-
-The `liquidate` instruction is identified using the 8-byte Anchor discriminator: `dfb3e27d302e274a`
+Results are initially filtered using the Jupiter Lend borrow program, `jupr81YtYssSyPt8jbnGuiWon5f6x9TcDEFxYe3Bdzi`, and the `liquidate` instruction identified using the 8-byte Anchor discriminator: `dfb3e27d302e274a`.
 
 The outer instruction contains the accounts required to identify the position and assets involved in the liquidation:
 
@@ -43,7 +53,7 @@ The final amount of collateral withdrawn is not directly represented by `col_per
 
 ## Inner Liquidity Instructions
 
-Liquidations invoke the Jupiter Lend Liquidity program through `operate` instructions within the outer `liquidate` instruction.
+Liquidations invoke the Jupiter Lend Liquidity program through `operate` inner-instructions within the outer `liquidate` instruction.
 
 The `operate` discriminator is:
 
