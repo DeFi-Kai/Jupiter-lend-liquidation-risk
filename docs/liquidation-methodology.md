@@ -1,18 +1,14 @@
 # Liquidation Methodology
 
-Jupiter Lend uses Anchor, a framework for creating Solana programs (smart contracts) using the Rust programming language. Each program contains a set of instructions that define actions like `supply`, when assets are supplied to a market, or `liquidate`, when a position is liquidated. The first 8 bytes of the instruction data contain a discriminator, which identifies the instruction type. The bytes that follow contain the instruction's serialized arguments.
+Jupiter Lend uses Anchor, a Rust framework for creating Solana programs (smart contracts). Each program contains a set of instructions that define actions like `supply`, when assets are supplied to a market, or `liquidate`, when a position is liquidated. The first 8 bytes of the instruction data contain a discriminator, which identifies the instruction type. The bytes that follow contain the instruction's serialized arguments.
 
-For example, the Jupiter Lend `liquidate` instruction begins with the discriminator:
-
-`dfb3e27d302e274a`
+For example, the Jupiter Lend `liquidate` instruction begins with the discriminator: `dfb3e27d302e274a`
 
 A transaction can contain multiple top-level, or outer, instructions. During execution, an outer instruction can also invoke other programs through cross-program invocations (CPIs). These calls are recorded as inner instructions associated with the outer instruction that invoked them.
 
 In Dune's Solana instruction data, `outer_instruction_index` identifies the position of a top-level instruction within a transaction, while `inner_instruction_index` identifies instructions executed within that outer instruction.
 
-This analysis treats each Jupiter Lend `liquidate` instruction as a liquidation event. Each row in the resulting dataset is uniquely identified by:
-
-`tx_id + outer_instruction_index`
+This analysis treats each Jupiter Lend `liquidate` instruction as a liquidation event. Each row in the resulting dataset is uniquely identified by: `tx_id + outer_instruction_index`
 
 The associated inner instructions are then used to reconstruct the debt repaid and collateral seized during that liquidation.
 
