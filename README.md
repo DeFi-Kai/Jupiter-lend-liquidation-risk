@@ -4,7 +4,7 @@ SQL query and methodology for decoding Jupiter Lend Liquidations and flashloans.
 
 ## Dashboard
 
-The analysis is available in the [Jupiter Lend Liquidations and Flash Loans dashboard on Dune](https://dune.com/defi_kai/jupiter-lend-liquidations-and-flash-loans-10102025).
+The analysis of the October 10, 2025 market selloff is available in the [Jupiter Lend Liquidations and Flash Loans dashboard on Dune](https://dune.com/defi_kai/jupiter-lend-liquidations-and-flash-loans-10102025).
 
 ![Jupiter Lend liquidation dashboard](docs/jupiter-lend-liquidation-dashboard.png)
 
