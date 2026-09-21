@@ -1,16 +1,16 @@
 # Liquidation Methodology
 
-## Protocol and Instruction Identification
+Solana programs (smart contracts) are written in Anchor, a framework for the Rust programming language. Each program has a set of instructions that define actions. When a transaction occurs, instructions are recorded as data payloads. Each instruction prepends an 8-byte discriminator  
 
-Jupiter Lend borrow program:
-
-`jupr81YtYssSyPt8jbnGuiWon5f6x9TcDEFxYe3Bdzi`
-
-The `liquidate` instruction is identified using the 8-byte Anchor discriminator:
-
-`dfb3e27d302e274a`
 
 Each row represents one decoded Jupiter Lend liquidation instruction, uniquely identified by `tx_id + outer_instruction_index`.
+
+
+## Protocol and Instruction Identification
+
+Jupiter Lend borrow program: `jupr81YtYssSyPt8jbnGuiWon5f6x9TcDEFxYe3Bdzi`
+
+The `liquidate` instruction is identified using the 8-byte Anchor discriminator: `dfb3e27d302e274a`
 
 The outer instruction contains the accounts required to identify the position and assets involved in the liquidation:
 
