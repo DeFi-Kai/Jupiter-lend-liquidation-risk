@@ -10,7 +10,7 @@ The analysis of the October 10, 2025 market selloff is available in the [Jupiter
 
 ## Background 
 
-Jupiter Lend is a credit market on the Solana blockchain. Blockchain credit markets allow users to supply assets as collateral, borrow against those assets, or provide liquidity that other users can borrow. Similar lending infrastructure is increasingly being integrated into fintech and digital-asset products like Coinbase, and Robinhood.
+Jupiter Lend is a credit market on the Solana blockchain. Blockchain credit markets allow users to supply assets as collateral, borrow against those assets, or provide liquidity that other users can borrow. Similar lending infrastructure is increasingly being integrated into fintech and digital-asset products like Coinbase and Robinhood.
 
 Borrowers deposit cryptocurrencies or tokenized assets as collateral and can borrow up to a specified loan-to-value (LTV) ratio. Each market also has a liquidation threshold that determines when a borrowing position becomes undercollateralized enough to be eligible for liquidation.
 
