@@ -1,8 +1,6 @@
 # Liquidation Methodology
 
-Solana programs (smart contracts) define instructions that represent actions a program can execute, such as `supply`, when assets are supplied to a market, or `liquidate`, when a position is liquidated. 
-
-Jupiter Lend uses Anchor, a framework for building Solana programs in Rust. For the instructions analyzed in this dataset, the first 8 bytes of the instruction data contain a discriminator, which identifies the instruction type. The bytes that follow contain the instruction's serialized arguments.
+Jupiter Lend uses Anchor, a framework for creating Solana programs (smart contracts) using the Rust programming language. Each program contains a set of instructions that define actions like supply, when assets are supplied to a market or liquidate, when a position is liquidated. The first 8 bytes of the instruction data contain a discriminator, which identifies the instruction type. The bytes that follow contain the instruction's serialized arguments.
 
 For example, the Jupiter Lend `liquidate` instruction begins with the discriminator:
 
