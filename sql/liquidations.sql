@@ -10,7 +10,6 @@ WITH liq_keys AS (
     FROM solana.instruction_calls
     WHERE executing_account = 'jupr81YtYssSyPt8jbnGuiWon5f6x9TcDEFxYe3Bdzi'
       AND substr("data", 1, 8) = from_hex('dfb3e27d302e274a')
-      AND inner_instruction_index IS NULL
       AND tx_success = TRUE
       AND block_time >= '{{start_date}}'
       AND block_time <  '{{end_date}}'
@@ -114,8 +113,7 @@ liq_meta AS (
     JOIN liq_keys lk
       ON sc.tx_id = lk.tx_id
      AND sc.outer_instruction_index = lk.outer_instruction_index
-    WHERE sc.inner_instruction_index IS NULL
-      AND substr(sc."data", 1, 8) = from_hex('dfb3e27d302e274a')
+      WHERE substr(sc."data", 1, 8) = from_hex('dfb3e27d302e274a')
       AND sc.block_time >= '{{start_date}}'
       AND sc.block_time <  '{{end_date}}'
 )
