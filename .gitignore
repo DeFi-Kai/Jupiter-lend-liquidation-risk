@@ -1,0 +1,5 @@
+*.duckdb
+*.duckdb.wal
+
+.venv/
+.ipynb_checkpoints/

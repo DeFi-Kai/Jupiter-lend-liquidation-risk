@@ -108,9 +108,10 @@ The resulting dataset converts low-level program execution into fields that can 
 
 ## Repo structure
 
-- `data/` contains the October 10, 2025 liquidation and flashloan exports, along with their schemas.
-- `sql/` contains the DuneSQL queries used to produce the datasets.
-- `docs/` contains the methodology, validation notes, and dashboard image.
+- `data/` contains the October 10, 2025 liquidation and flashloan exports, along with price and TVL data used in the event analysis.
+- `sql/` contains the DuneSQL queries used to produce the datasets and DuckDB queries for the event analysis.
+- `docs/` contains the methodology, validation notes, dashboard image, and Figure 1.
+- `notebooks/` contains the Figure 1 visualization.
 
 ## Scope and limitations
 
@@ -143,3 +144,9 @@ More precise price data would allow better estimation of the value captured duri
 
 5. Run the query.
 6. Review or export the resulting liquidation dataset as needed.
+
+### October 10 event analysis
+
+The five-minute analysis combines the liquidation export with one-minute SOL prices. Run [`sql/analysis/create_liquidation_analysis_5m.sql`](sql/analysis/create_liquidation_analysis_5m.sql) from the repository root with DuckDB to build the analysis table. The report-facing calculations are in [`sql/analysis/october_10_event_metrics.sql`](sql/analysis/october_10_event_metrics.sql), and [`notebooks/october_10_event_analysis.ipynb`](notebooks/october_10_event_analysis.ipynb) reproduces [Figure 1](docs/images/figure-1-debt-repaid-vs-sol-price.png).
+
+The SOL prices come from Binance's public market-data endpoint; the October 10 Jupiter Lend TVL snapshot comes from DeFiLlama. The retrieval scripts are in [`scripts/`](scripts/).
