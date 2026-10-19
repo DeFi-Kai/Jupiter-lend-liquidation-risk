@@ -138,10 +138,12 @@ More precise price data would allow better estimation of the value captured duri
 
 ## Reproducibility
 
-### Prerequisites
-- A Dune account
+### Liquidation dataset
 
-### Run the query
+#### Prerequisites
+- A Dune Analyst account
+
+#### Run the query
 1. Sign in to Dune.
 2. Create a new SQL query.
 3. Copy the contents of [`sql/liquidations.sql`](sql/liquidations.sql) into the Dune query editor.
@@ -157,8 +159,6 @@ More precise price data would allow better estimation of the value captured duri
 6. Review or export the resulting liquidation dataset as needed.
 
 ### October 10 event analysis
-
-October 10 event analysis
 
 The event analysis combines the exported liquidation dataset with one-minute SOL prices from Binance using DuckDB. The analysis queries calculate five-minute liquidation metrics and event-level statistics, while a Jupyter notebook reproduces Figure 1.
 
