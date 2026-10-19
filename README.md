@@ -2,6 +2,8 @@
 
 SQL query and methodology for decoding Jupiter Lend Liquidations and flashloans. The queries reconstruct liquidation activity from raw Solana instructions in DuneSQL to identify liquidated positions, collateral seized, debt repaid, liquidators, and associated flashloans. The project includes a transaction-level dataset of Jupiter Lend liquidations and flashloans during the October 10, 2025 market selloff. 
 
+This dataset can help risk management teams and researchers identify periods of elevated liquidation activity, measure the value of debt repaid and collateral seized, and assess stress within Jupiter Lend’s lending markets.
+
 ## Background 
 
 Jupiter Lend is a credit market on the Solana blockchain. Blockchain credit markets allow users to supply assets as collateral, borrow against those assets, or provide liquidity that other users can borrow. Similar lending infrastructure is increasingly being integrated into fintech and digital-asset products like Coinbase and Robinhood.
