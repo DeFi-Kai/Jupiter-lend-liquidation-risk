@@ -152,7 +152,8 @@ More precise price data would allow better estimation of the value captured duri
    Example:
 
    ```sql
-   TIMESTAMP '2025-10-10 00:00:00 UTC'
+   AND block_time >= TIMESTAMP '2025-10-10 00:00:00 UTC'
+   AND block_time <  TIMESTAMP '2025-10-11 00:00:00 UTC'
    ```
 
 5. Run the query.
