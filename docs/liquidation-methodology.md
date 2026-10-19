@@ -53,7 +53,7 @@ The `operate` discriminator is:
 
 `d96ad06374972a87`
 
-The first `operate` inner instruction contains the debt/borrow amount at bytes 25-32, and the preceding `operate` inner instruction contains the collateral/supply amount at bytes 9-16. The liquidity movements are recorded as signed negative integers, so absolute values are used when converting them into positive debt-repaid and collateral-seized amounts.
+The first `operate` inner instruction contains the debt/borrow amount at bytes 25-32, and the second `operate` inner instruction contains the collateral/supply amount at bytes 9-16. The liquidity movements are recorded as signed negative integers, so absolute values are used when converting them into positive debt-repaid and collateral-seized amounts.
 
 ## Amount Normalization and Pricing
 
