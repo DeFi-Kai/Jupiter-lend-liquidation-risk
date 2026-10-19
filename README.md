@@ -29,7 +29,7 @@ The October 10 liquidation cascade produced:
 
 Explore liquidation activity and flashloan metrics from the October 10, 2025 event in the [Jupiter Lend Liquidations and Flash Loans dashboard on Dune](https://dune.com/defi_kai/jupiter-lend-liquidations-and-flash-loans-10102025).
 
-![Jupiter Lend liquidation dashboard](docs/jupiter-lend-liquidation-dashboard.png)
+![Jupiter Lend liquidation dashboard](docs/images/jupiter-lend-liquidation-dashboard.png)
 
 
 ## How the Dataset Is Built
