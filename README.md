@@ -155,3 +155,7 @@ More precise price data would allow better estimation of the value captured duri
 
 5. Run the query.
 6. Review or export the resulting liquidation dataset as needed.
+
+### October 10 event analysis
+
+See the [October 10 event analysis instructions](docs/october-10-event-analysis.md) to set up the database and run the [visualization notebook](notebooks/visualization.ipynb).
