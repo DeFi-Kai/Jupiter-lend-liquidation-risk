@@ -158,4 +158,8 @@ More precise price data would allow better estimation of the value captured duri
 
 ### October 10 event analysis
 
-See the [October 10 event analysis instructions](docs/october-10-event-analysis.md) to set up the database and run the [visualization notebook](notebooks/visualization.ipynb).
+October 10 event analysis
+
+The event analysis combines the exported liquidation dataset with one-minute SOL prices from Binance using DuckDB. The analysis queries calculate five-minute liquidation metrics and event-level statistics, while a Jupyter notebook reproduces Figure 1.
+
+See the [October 10 event analysis instructions](docs/october-10-event-analysis.md) for data sources, processing steps, and reproduction instructions.
