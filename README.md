@@ -2,12 +2,6 @@
 
 SQL query and methodology for decoding Jupiter Lend Liquidations and flashloans. The queries reconstruct liquidation activity from raw Solana instructions in DuneSQL to identify liquidated positions, collateral seized, debt repaid, liquidators, and associated flashloans. The project includes a transaction-level dataset of Jupiter Lend liquidations and flashloans during the October 10, 2025 market selloff. 
 
-## Dashboard
-
-The analysis of the October 10, 2025 market selloff is available in the [Jupiter Lend Liquidations and Flash Loans dashboard on Dune](https://dune.com/defi_kai/jupiter-lend-liquidations-and-flash-loans-10102025).
-
-![Jupiter Lend liquidation dashboard](docs/jupiter-lend-liquidation-dashboard.png)
-
 ## Background 
 
 Jupiter Lend is a credit market on the Solana blockchain. Blockchain credit markets allow users to supply assets as collateral, borrow against those assets, or provide liquidity that other users can borrow. Similar lending infrastructure is increasingly being integrated into fintech and digital-asset products like Coinbase and Robinhood.
@@ -31,13 +25,22 @@ The October 10 liquidation cascade produced:
 - Nine wallets taking part in liquidations
 - The largest liquidated collateral assets SOL ( ~$567k), cbBTC ( ~$372k), and JUPSOL ( ~$264k)
 
+## Interactive Dashboard
+
+Explore liquidation activity and flashloan metrics from the October 10, 2025 event in the [Jupiter Lend Liquidations and Flash Loans dashboard on Dune](https://dune.com/defi_kai/jupiter-lend-liquidations-and-flash-loans-10102025).
+
+![Jupiter Lend liquidation dashboard](docs/jupiter-lend-liquidation-dashboard.png)
+
+
 ## How the Dataset Is Built
+
+For a step-by-step walkthrough, see [Part 1: Reverse-Engineering Jupiter Lend Liquidations](https://defi-kai.github.io/kai-site/work/reverse-engineering-jupiter-lend-liquidations-part-1/) for identifying and decoding liquidation instructions, and [Part 2](https://defi-kai.github.io/kai-site/work/reverse-engineering-jupiter-lend-liquidations-part-2/) for combining the results into a reusable DuneSQL query.
+
+---
 
 Jupiter Lend liquidations are not recorded onchain as ready-to-query rows containing fields such as `debt_repaid`, `collateral_seized`, or token symbols. A single liquidation transaction produces a trace of outer and inner instructions across several Solana programs.
 
 Building the dataset required identifying the liquidation instruction, locating the related inner instructions, decoding their binary payloads, and combining the results into one analytical record.
-
-**14 raw instruction rows → 1 decoded liquidation record**
 
 ### Before: Raw Transaction Instructions
 
@@ -97,6 +100,8 @@ The detailed decoding logic is documented in [`docs/liquidation-methodology.md`]
 
 ### After: Decoded Liquidation Record
 
+**14 raw instruction rows → 1 decoded liquidation record**
+
 After decoding the instruction payloads, mapping account positions to token mints, and joining token metadata and prices, the same transaction becomes a single analysis-ready row:
 
 | block_time          | tx_id              | debt_symbol | collateral_symbol | liquidator                                  | position                                     | collateral_seized_usd |    debt_repaid_usd |
@@ -121,9 +126,15 @@ More precise price data would allow better estimation of the value captured duri
 
 ## Data sources
 
-- [`solana.instruction_calls`](https://dune.com/data/solana.instruction_calls)
-- [`prices.hour`](https://dune.com/data/prices.hour)
+**Liquidation dataset (Dune)**
 
+- [solana.instruction_calls](https://dune.com/data/solana.instruction_calls) — Raw Solana instruction data used to reconstruct liquidations.
+- [prices.hour](https://dune.com/data/prices.hour) — Historical token prices used to estimate liquidation USD values.
+
+**October 10 event analysis**
+
+- [Binance market data](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md#klinecandlestick-data) — One-minute SOL prices used in the five-minute market analysis.
+- [DeFiLlama](https://api-docs.defillama.com/) — Jupiter Lend TVL snapshot for October 10, 2025.
 
 ## Reproducibility
 
@@ -144,9 +155,3 @@ More precise price data would allow better estimation of the value captured duri
 
 5. Run the query.
 6. Review or export the resulting liquidation dataset as needed.
-
-### October 10 event analysis
-
-The five-minute analysis combines the liquidation export with one-minute SOL prices. Run [`sql/analysis/create_liquidation_analysis_5m.sql`](sql/analysis/create_liquidation_analysis_5m.sql) from the repository root with DuckDB to build the analysis table. The report-facing calculations are in [`sql/analysis/october_10_event_metrics.sql`](sql/analysis/october_10_event_metrics.sql), and [`notebooks/october_10_event_analysis.ipynb`](notebooks/october_10_event_analysis.ipynb) reproduces [Figure 1](docs/images/figure-1-debt-repaid-vs-sol-price.png).
-
-The SOL prices come from Binance's public market-data endpoint; the October 10 Jupiter Lend TVL snapshot comes from DeFiLlama. The retrieval scripts are in [`scripts/`](scripts/).
