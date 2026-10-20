@@ -6,7 +6,7 @@ This dataset can help risk management teams and researchers identify periods of 
 
 ## Background 
 
-Jupiter Lend is a credit market on the Solana blockchain. Blockchain credit markets allow users to supply assets as collateral, borrow against those assets, or provide liquidity that other users can borrow. Similar [lending infrastructure](https://www.bankofcanada.ca/2026/04/staff-analytical-paper-2026-13/) is increasingly being integrated into fintech and digital-asset products like [Coinbase](https://www.coinbase.com/blog/earn-competitive-yields-by-lending-your-usdc) and [Robinhood](https://morpho.org/blog/robinhood-chooses-morpho-to-power-new-earn-product).
+Jupiter Lend is a credit market on the Solana blockchain. [Blockchain credit markets](https://www.bankofcanada.ca/2026/04/staff-analytical-paper-2026-13/) allow users to supply assets as collateral, borrow against those assets, or provide liquidity that other users can borrow. Similar lending infrastructure is increasingly being integrated into fintech and digital-asset products like [Coinbase](https://www.coinbase.com/blog/earn-competitive-yields-by-lending-your-usdc) and [Robinhood](https://morpho.org/blog/robinhood-chooses-morpho-to-power-new-earn-product).
 
 Borrowers deposit cryptocurrencies or tokenized assets as collateral and can borrow up to a specified loan-to-value (LTV) ratio. Each market also has a liquidation threshold that determines when a borrowing position becomes undercollateralized enough to be eligible for liquidation.
 
